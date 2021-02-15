@@ -2,12 +2,12 @@ import { URL, URLSearchParams } from 'url'
 import config from './nasa-config'
 
 
-const ApodApi = async () => {
+const ApodApi = async (count = 10) => {
     let url = new URL(config.baseUrl + '/planetary/apod')
     let params = {
         api_key: config.apiKey,
         thumbs: true,
-        count: 5
+        count: count
     }
     url.search = new URLSearchParams(params).toString();
 
