@@ -1,12 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, ScrollView, Image } from 'react-native';
+import {WebView} from 'react-native-webview';
 
 
 export default function ApodCard({ data }) {
   return (
     <ScrollView style={styles.container}>
-        <Image style={styles.img} source={{ url: data.url }}/>
+        {
+          data.media_type === 'image' ? (
+            <Image style={styles.img} source={{ url: data.url }}/>
+          ): (
+            <WebView
+              style={styles.img}
+              source={{uri: data.url}}
+              javaScriptEnabled={true}
+              domStorageEnabled={true}
+            />
+          )
+        }
         <Text style={styles.date}>Date : {data.date}</Text>
+        <Text style={styles.date}>Type : {data.media_type}</Text>
         <Text style={styles.explan}>Explanation : {data.explanation}</Text>
     </ScrollView>
   );

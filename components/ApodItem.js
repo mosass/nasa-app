@@ -5,7 +5,7 @@ export default function ApodItem({ data, onPress }) {
   return (
     <TouchableHighlight onPress={onPress} >
         <View style={styles.container}>
-            <Image style={styles.thumbnail} source={{url: data.url}} />
+            <Image style={styles.thumbnail} source={{url: data.media_type === 'image' ? data.url : data.thumbnail_url }} />
             <View style={styles.text}>
               <Text style={styles.title}>{data.title}</Text>
               <Text style={styles.date}>{data.date}</Text>
